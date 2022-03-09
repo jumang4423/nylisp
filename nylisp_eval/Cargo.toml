@@ -12,3 +12,4 @@ name = "nylisp_eval"
 path = "src/lib.rs"
 
 [dependencies]
+rand = { version = "0.7.3", features = ["wasm-bindgen"] }

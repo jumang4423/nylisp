@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/nylisp.iml" filepath="$PROJECT_DIR$/.idea/nylisp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/command_line_int.iml" filepath="$PROJECT_DIR$/.idea/command_line_int.iml" />
     </modules>
   </component>
 </project>
