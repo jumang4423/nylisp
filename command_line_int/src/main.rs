@@ -8,12 +8,12 @@ fn main() {
     let mut validated_ast: Vec<nylisp_eval::ast::ast::NylispExpression> = Vec::new();
     for expr in ast {
         match expr {
-            nylisp_eval::ast::ast::NylispExpression(expr) => {
-                validated_ast.push(expr);
-            }
-            _ => {}
+            Ok(expr) => validated_ast.push(expr),
+            Err(err) => println!("{:?}", err),
         }
     }
     let result = nylisp_eval::evaluate_nylisp(validated_ast);
+
+    println!("{:?}", result);
 }
 
