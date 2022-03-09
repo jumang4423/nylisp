@@ -7,6 +7,10 @@ mod ast;
 mod environment;
 mod evaluation;
 
+// export ast, environment to lib.rs
+pub use ast::*;
+pub use environment::*;
+
 // tokenize given code then return a list of tokens
 pub fn tokenize_nylisp(plaintext: String) -> Vec<String> {
     let tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(plaintext);
