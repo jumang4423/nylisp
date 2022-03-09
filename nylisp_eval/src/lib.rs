@@ -3,8 +3,8 @@ extern crate core;
 // nylisp interpreter library
 mod parser;
 mod tokenizer;
-mod ast;
-mod environment;
+pub mod ast;
+pub mod environment;
 mod evaluation;
 
 // export ast, environment to lib.rs
