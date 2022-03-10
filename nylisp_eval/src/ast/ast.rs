@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use std::path::Display;
 use std::rc::Rc;
+use crate::tokenizer;
 
 // exp
 #[derive(Clone, Debug, PartialOrd, PartialEq)]
@@ -20,6 +21,30 @@ pub enum NylispExpression {
         variables: Rc<NylispExpression>,
         body: Rc<NylispExpression>,
     },
+}
+
+impl std::fmt::Display for NylispExpression {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match self {
+            NylispExpression::Quote(exp) => write!(f, "'{}", *exp),
+            NylispExpression::Symbol(sym) => write!(f, "{}", sym),
+            NylispExpression::Number(num) => write!(f, "{}", num),
+            NylispExpression::Boolean(b) => write!(f, "{}", b),
+            NylispExpression::String(s) => write!(f, "{}", s),
+            NylispExpression::List(list) => {
+                let mut s = String::new();
+                s.push_str(tokenizer::tokenizer::LPAREN.to_string().as_str());
+                for exp in list {
+                    s.push_str(&format!("{} ", exp));
+                }
+                s.push_str(tokenizer::tokenizer::RPAREN.to_string().as_str());
+                write!(f, "{}", s)
+            }
+            NylispExpression::Function(_) => write!(f, "<function>"),
+            NylispExpression::Closure { .. } => write!(f, "<closure>"),
+            NylispExpression::ScopedLet { .. } => write!(f, "<scoped-let>"),
+        }
+    }
 }
 
 // environment
