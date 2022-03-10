@@ -69,11 +69,20 @@ dependencies = [
 
 [[package]]
 name = "nylisp_eval"
-version = "0.2.4"
+version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d8c6ec38718df5a352a22a151821925e853dc403310cdce4ee5ee53c5720f921"
+checksum = "8e1eca28e87bdb48a0af5418d3f858ea29a517b6dc6de2a2560dd40fa7c2c908"
 dependencies = [
  "rand",
+]
+
+[[package]]
+name = "nylisp_wasm"
+version = "0.1.2"
+dependencies = [
+ "nylisp_eval",
+ "wasm-bindgen",
+ "wasm-bindgen-test",
 ]
 
 [[package]]
@@ -156,15 +165,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-xid",
-]
-
-[[package]]
-name = "to_wasm"
-version = "0.1.0"
-dependencies = [
- "nylisp_eval",
- "wasm-bindgen",
- "wasm-bindgen-test",
 ]
 
 [[package]]
