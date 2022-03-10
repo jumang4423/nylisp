@@ -7,6 +7,7 @@ fn read_line() -> String {
 }
 
 fn main() {
+    let mut global_env = nylisp_eval::environment::environment::builtin_env();
     println!("-o welcome to nylisp repl");
     println!("-! ctrl+d to exit");
     loop {
@@ -23,7 +24,7 @@ fn main() {
                 Err(err) => println!("{:?}", err),
             }
         }
-        let result = nylisp_eval::evaluate_nylisp(validated_ast);
+        let result = nylisp_eval::evaluate_nylisp(validated_ast, &mut global_env);
 
         println!("{:?}", result);
     }

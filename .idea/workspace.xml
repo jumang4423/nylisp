@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e1e7c54a-e72d-4ff3-9eea-00bb0ba9bfc5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_line_int/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/command_line_int/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_line_int/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/command_line_int/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/command_line_int/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/command_line_int/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nylisp_eval/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/nylisp_eval/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nylisp_eval/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/nylisp_eval/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nylisp_eval/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/nylisp_eval/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nylisp_eval/src/evaluation/evaluation.rs" beforeDir="false" afterPath="$PROJECT_DIR$/nylisp_eval/src/evaluation/evaluation.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,10 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.hideNoCargoProjectNotifications/Users/jumang4423/PROJECTS/rust/nylisp/command_line_int/Cargo.toml" value="true" />
     <property name="org.rust.hideNoCargoProjectNotifications/Users/jumang4423/PROJECTS/rust/nylisp/command_line_int/src/main.rs" value="true" />
+    <property name="org.rust.hideNoCargoProjectNotifications/Users/jumang4423/PROJECTS/rust/nylisp/nylisp_eval/src/environment/environment.rs" value="true" />
+    <property name="org.rust.hideNoCargoProjectNotifications/Users/jumang4423/PROJECTS/rust/nylisp/nylisp_eval/src/evaluation/evaluation.rs" value="true" />
     <property name="org.rust.hideNoCargoProjectNotifications/Users/jumang4423/PROJECTS/rust/nylisp/nylisp_eval/src/lib.rs" value="true" />
+    <property name="org.rust.hideNoCargoProjectNotifications/Users/jumang4423/PROJECTS/rust/nylisp/nylisp_eval/target/package/nylisp_eval-0.2.1/src/evaluation/evaluation.rs" value="true" />
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -55,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646845050266</updated>
       <workItem from="1646845052040" duration="976000" />
-      <workItem from="1646881045518" duration="305000" />
+      <workItem from="1646881045518" duration="1395000" />
     </task>
     <servers />
   </component>

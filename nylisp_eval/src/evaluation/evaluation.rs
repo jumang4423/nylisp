@@ -114,18 +114,16 @@ impl Evaluator {
                         if args.len() != 2 {
                             return Err(ast::NylispError::Because(format!("🌷 requires 2 arguments, got {}", args.len())));
                         }
-                        let symbol: ast::NylispExpression = self.evaluate(&args[0], env)?;
                         let value: ast::NylispExpression = self.evaluate(&args[1], env)?;
-                        match symbol {
-                            ast::NylispExpression::Symbol(s) => {
-                                env.data.insert(s.clone(), value.clone());
-                                return Ok(Some(ast::NylispExpression::List(vec![
-                                    ast::NylispExpression::Symbol(s.clone()),
-                                    value,
-                                    ast::NylispExpression::Boolean(true),
-                                ])));
-                            }
-                            _ => return Err(ast::NylispError::Because(format!("🌷 requires a symbol, got {:?}", symbol)))
+                        if let ast::NylispExpression::Symbol(s) = args[0].clone() {
+                            env.data.insert(s.clone(), value.clone());
+                            return Ok(Some(ast::NylispExpression::List(vec![
+                                ast::NylispExpression::Symbol(s.clone()),
+                                value,
+                                ast::NylispExpression::Boolean(true),
+                            ])));
+                        } else {
+                            return Err(ast::NylispError::Because(format!("🌷 requires a symbol as first argument, got {:?}", args[0])));
                         }
                     }
                     tokenizer::tokenizer::CLOSURE => {
@@ -152,7 +150,7 @@ impl Evaluator {
                         match self.evaluate(&args[1], &mut self.new_scoped_let_env(Rc::new(args[0].clone()), env).unwrap()) {
                             Ok(evaluated_exp) => {
                                 return Ok(Some(evaluated_exp));
-                            },
+                            }
                             Err(e) => return Err(e)
                         }
                     }
@@ -329,7 +327,7 @@ mod tests {
     // global variable var access
     #[test]
     fn eval_nylisp_insert_dat() {
-        let input = "💖🌹 😪hoge 😪💖1 2 3💔💔";
+        let input = "💖🌹 hoge 😪💖1 2 3💔💔";
         let expected = ast::NylispExpression::List(vec![
             ast::NylispExpression::Symbol("hoge".to_string()),
             ast::NylispExpression::List(vec![
@@ -371,9 +369,9 @@ mod tests {
     // random 🎨
     #[test]
     fn eval_nylisp_random() {
-        let input = "💖🎨 5💔";
+        let input = "💖🎨 123456789💔";
         let got = input_and_go(input);
-        if let ast::NylispExpression::Number(_) = got[0].as_ref() .unwrap() {
+        if let ast::NylispExpression::Number(_) = got[0].as_ref().unwrap() {
             assert!(true);
         } else {
             assert!(false);

@@ -4,10 +4,10 @@ completely emoji based lisp interpreter
 
 ## for shel binaries
 
-```bash
-cargo install --git https://github.com/jumang4423/nylisp.git
-```
+- rlwrap is a wrap for better readline experience, so if u dont need it, ignore it
 
+run by:
 ```bash
-cargo uninstall nylisp && rm -rf ~/.nylisp
+cd command_line_int
+rlwrap cargo run --release
 ```

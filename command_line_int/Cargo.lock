@@ -66,9 +66,9 @@ dependencies = [
 
 [[package]]
 name = "nylisp_eval"
-version = "0.2.2"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f642f7634feef3f2388312782f5fbb918b514b63c34524dee58dbb77124c6012"
+checksum = "b033b4ccc9700a286354b7478a9e986d2ce58a4f8fb1129e5e4b795553c73ff8"
 dependencies = [
  "rand",
 ]
