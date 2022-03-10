@@ -1,19 +1,31 @@
 pub use nylisp_eval;
 
-fn main() {
-    let tokens = nylisp_eval::tokenize_nylisp("💖+ 1 2💔 💖+ 1 2💔".to_string());
-    println!("{:?}", tokens);
-    let ast = nylisp_eval::parse_nylisps(tokens);
-    println!("{:?}", ast);
-    let mut validated_ast: Vec<nylisp_eval::ast::ast::NylispExpression> = Vec::new();
-    for expr in ast {
-        match expr {
-            Ok(expr) => validated_ast.push(expr),
-            Err(err) => println!("{:?}", err),
-        }
-    }
-    let result = nylisp_eval::evaluate_nylisp(validated_ast);
+fn read_line() -> String {
+    let mut input = String::new();
+    std::io::stdin().read_line(&mut input).unwrap();
+    input
+}
 
-    println!("{:?}", result);
+fn main() {
+    println!("-o welcome to nylisp repl");
+    println!("-! ctrl+d to exit");
+    loop {
+        println!("*");
+        let tokens = nylisp_eval::tokenize_nylisp(read_line());
+        if tokens.len() == 0 {
+            continue;
+        }
+        let ast = nylisp_eval::parse_nylisps(tokens);
+        let mut validated_ast: Vec<nylisp_eval::ast::ast::NylispExpression> = Vec::new();
+        for expr in ast {
+            match expr {
+                Ok(expr) => validated_ast.push(expr),
+                Err(err) => println!("{:?}", err),
+            }
+        }
+        let result = nylisp_eval::evaluate_nylisp(validated_ast);
+
+        println!("{:?}", result);
+    }
 }
 

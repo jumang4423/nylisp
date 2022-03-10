@@ -24,8 +24,7 @@ pub fn parse_nylisps(tokens: Vec<String>) -> Vec<Result<ast::ast::NylispExpressi
 }
 
 // evaluate given AST
-pub fn evaluate_nylisp(ast: Vec<ast::ast::NylispExpression>) -> Vec<Result<ast::ast::NylispExpression, ast::ast::NylispError>> {
-    let mut env = environment::environment::builtin_env();
+pub fn evaluate_nylisp(ast: Vec<ast::ast::NylispExpression>, env: &mut ast::ast::Environment) -> Vec<Result<ast::ast::NylispExpression, ast::ast::NylispError>> {
     let mut evaluator = evaluation::evaluation::Evaluator::new(ast);
-    evaluator.eval_programs(&mut env)
+    evaluator.eval_programs(env)
 }
