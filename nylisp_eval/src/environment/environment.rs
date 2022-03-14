@@ -21,10 +21,10 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // -
     data.insert("-".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut args = parse_list_of_floats(&args)?;
+            let args = parse_list_of_floats(&args)?;
             // pop the first element
-            let mut result = args.first().unwrap().clone();
-            let mut rest_args = args.iter().skip(1);
+            let mut result = *args.first().unwrap();
+            let rest_args = args.iter().skip(1);
             for arg in rest_args {
                 result -= arg;
             }
@@ -36,10 +36,10 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // *
     data.insert("*".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut args = parse_list_of_floats(&args)?;
+            let args = parse_list_of_floats(&args)?;
             // pop the first element
-            let mut result = args.first().unwrap().clone();
-            let mut rest_args = args.iter().skip(1);
+            let mut result = *args.first().unwrap();
+            let rest_args = args.iter().skip(1);
             for arg in rest_args {
                 result *= arg;
             }
@@ -51,10 +51,10 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // /
     data.insert("/".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut args = parse_list_of_floats(&args)?;
+            let args = parse_list_of_floats(&args)?;
             // pop the first element
-            let mut result = args.first().unwrap().clone();
-            let mut rest_args = args.iter().skip(1);
+            let mut result = *args.first().unwrap();
+            let rest_args = args.iter().skip(1);
             for arg in rest_args {
                 result /= arg;
             }
@@ -65,10 +65,10 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // %
     data.insert("%".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut args = parse_list_of_floats(&args)?;
+            let args = parse_list_of_floats(&args)?;
             // pop the first element
-            let mut result = args.first().unwrap().clone();
-            let mut rest_args = args.iter().skip(1);
+            let mut result = *args.first().unwrap();
+            let rest_args = args.iter().skip(1);
             for arg in rest_args {
                 result %= arg;
             }
@@ -95,10 +95,10 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // <
     data.insert("<".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut args = parse_list_of_floats(&args)?;
+            let args = parse_list_of_floats(&args)?;
             // pop the first element
-            let mut result = args.first().unwrap().clone();
-            let mut rest_args = args.iter().skip(1);
+            let mut result = *args.first().unwrap();
+            let rest_args = args.iter().skip(1);
             for arg in rest_args {
                 if result >= *arg {
                     return Ok(ast::ast::NylispExpression::Boolean(false));
@@ -113,10 +113,10 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // >
     data.insert(">".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut args = parse_list_of_floats(&args)?;
+            let args = parse_list_of_floats(&args)?;
             // pop the first element
-            let mut result = args.first().unwrap().clone();
-            let mut rest_args = args.iter().skip(1);
+            let mut result = *args.first().unwrap();
+            let rest_args = args.iter().skip(1);
             for arg in rest_args {
                 if result <= *arg {
                     return Ok(ast::ast::NylispExpression::Boolean(false));
@@ -133,7 +133,7 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
             let mut args = parse_list_of_bools(&args)?;
             // pop the first element
-            let mut result = args.pop().unwrap();
+            let result = args.pop().unwrap();
             for a in args {
                 if !a {
                     return Ok(ast::ast::NylispExpression::Boolean(false));
@@ -149,7 +149,7 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
             let mut args = parse_list_of_bools(&args)?;
             // pop the first element
-            let mut result = args.pop().unwrap();
+            let result = args.pop().unwrap();
             for a in args {
                 if a {
                     return Ok(ast::ast::NylispExpression::Boolean(true));
@@ -163,7 +163,7 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // not
     data.insert("❌".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut args = parse_list_of_bools(&args)?;
+            let args = parse_list_of_bools(&args)?;
             let mut result: Vec<ast::ast::NylispExpression> = vec![];
             for a in args {
                 result.push(ast::ast::NylispExpression::Boolean(!a));
@@ -183,7 +183,7 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
                 ));
             }
             // get first element of list
-            let mut cons = parse_single_list(&args[0])?;
+            let cons = parse_single_list(&args[0])?;
             Ok(cons.first().unwrap().clone())
         }
     ));
@@ -191,7 +191,7 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     // cdr
     data.insert("💭".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
-            let mut cons = parse_single_list(&args[0])?;
+            let cons = parse_single_list(&args[0])?;
             Ok(ast::ast::NylispExpression::List(cons[1..].to_vec()))
         }
     ));
@@ -200,7 +200,6 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     data.insert("🎨".to_string(), ast::ast::NylispExpression::Function(
         |args: Vec<ast::ast::NylispExpression>| -> Result<ast::ast::NylispExpression, ast::ast::NylispError> {
             if let ast::ast::NylispExpression::Number(n) = &args[0] {
-                let mut rng = rand::thread_rng();
                 let index = rand::thread_rng().gen_range(0, *n as usize);
                 Ok(ast::ast::NylispExpression::Number(index as f64))
             } else {

@@ -19,7 +19,7 @@ pub fn tokenize_nylisp(plaintext: String) -> Vec<String> {
 
 // parse given tokens into an AST
 pub fn parse_nylisps(tokens: Vec<String>) -> Vec<Result<ast::ast::NylispExpression, ast::ast::NylispError>> {
-    let mut parser = parser::parser::Parser::new();
+    let parser = parser::parser::Parser::new();
     parser.parse_programs(tokens)
 }
 

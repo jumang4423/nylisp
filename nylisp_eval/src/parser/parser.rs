@@ -85,7 +85,7 @@ impl Parser {
 
     fn parse_quote(self, tokens: Vec<String>) -> Result<(ast::ast::NylispExpression, Vec<String>), ast::ast::NylispError> {
         let (cur_expr, parsed_rest_tokens) = self.parse_program(tokens)?;
-        return Ok((ast::ast::NylispExpression::Quote(Rc::new(cur_expr)), parsed_rest_tokens));
+        Ok((ast::ast::NylispExpression::Quote(Rc::new(cur_expr)), parsed_rest_tokens))
     }
 }
 

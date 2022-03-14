@@ -94,7 +94,7 @@ impl Evaluator {
                 match s.as_str() {
                     tokenizer::tokenizer::IF => {
                         if args.len() != 3 {
-                            return Err(ast::NylispError::Because(format!("🐶 requires 3 arguments, got {}", args.len())));
+                            return Err(ast::NylispError::Because(format!("🐶 requires 3 arguments, got {}", args.len())))
                         }
                         let condition: ast::NylispExpression = self.evaluate(&args[0], env)?;
                         let then_branch: ast::NylispExpression = self.evaluate(&args[1], env)?;
@@ -102,78 +102,78 @@ impl Evaluator {
                         match condition {
                             ast::NylispExpression::Boolean(b) => {
                                 if b {
-                                    return Ok(Some(then_branch));
+                                     Ok(Some(then_branch))
                                 } else {
-                                    return Ok(Some(else_branch));
+                                    Ok(Some(else_branch))
                                 }
                             }
-                            _ => return Err(ast::NylispError::Because(format!("🐶 requires a boolean condition, got {:?}", condition)))
+                            _ => Err(ast::NylispError::Because(format!("🐶 requires a boolean condition, got {:?}", condition)))
                         }
                     }
                     tokenizer::tokenizer::VAR => {
                         if args.len() != 2 {
-                            return Err(ast::NylispError::Because(format!("🌷 requires 2 arguments, got {}", args.len())));
+                            return Err(ast::NylispError::Because(format!("🌷 requires 2 arguments, got {}", args.len())))
                         }
                         let value: ast::NylispExpression = self.evaluate(&args[1], env)?;
                         if let ast::NylispExpression::Symbol(s) = args[0].clone() {
                             env.data.insert(s.clone(), value.clone());
-                            return Ok(Some(ast::NylispExpression::List(vec![
-                                ast::NylispExpression::Symbol(s.clone()),
+                            Ok(Some(ast::NylispExpression::List(vec![
+                                ast::NylispExpression::Symbol(s),
                                 value,
                                 ast::NylispExpression::Boolean(true),
-                            ])));
+                            ])))
                         } else {
-                            return Err(ast::NylispError::Because(format!("🌷 requires a symbol as first argument, got {:?}", args[0])));
+                            return Err(ast::NylispError::Because(format!("🌷 requires a symbol as first argument, got {:?}", args[0])))
                         }
                     }
                     tokenizer::tokenizer::CLOSURE => {
                         // closure
                         if args.len() != 2 {
-                            return Err(ast::NylispError::Because(format!("🏨 requires 2 arguments, got {}", args.len())));
+                            return Err(ast::NylispError::Because(format!("🏨 requires 2 arguments, got {}", args.len())))
                         }
 
-                        return Ok(
+                        Ok(
                             Some(
                                 ast::NylispExpression::Closure {
                                     args: Rc::new(args[0].clone()),
                                     body: Rc::new(args[1].clone()),
                                 }
                             )
-                        );
+                        )
                     }
                     tokenizer::tokenizer::SCOPED_LET => {
                         // closure
                         if args.len() != 2 {
-                            return Err(ast::NylispError::Because(format!("🍙 requires 2 arguments, got {}", args.len())));
+                            return Err(ast::NylispError::Because(format!("🍙 requires 2 arguments, got {}", args.len())))
                         }
 
                         match self.evaluate(&args[1], &mut self.new_scoped_let_env(Rc::new(args[0].clone()), env).unwrap()) {
                             Ok(evaluated_exp) => {
-                                return Ok(Some(evaluated_exp));
+                                Ok(Some(evaluated_exp))
                             }
-                            Err(e) => return Err(e)
+                            Err(e) => Err(e)
                         }
                     }
-                    _ => return Ok(None)
+                    _ => Ok(None)
                 }
             }
-            _ => return Ok(None)
+            _ => Ok(None)
         }
     }
 
     fn new_closure_env<'a>(&self, param: Rc<ast::NylispExpression>, arg: Vec<ast::NylispExpression>, env: &'a mut ast::Environment) -> Result<ast::Environment<'a>, ast::NylispError> {
-        let mut param_strings = self.strs_from_list_of_symbols((*param).clone())?;
+        let param_strings = self.strs_from_list_of_symbols((*param).clone())?;
         if param_strings.len() != arg.len() {
             return Err(ast::NylispError::Because(format!("🏨 requires the same number of arguments as parameters, got {} and {}", param_strings.len(), arg.len())));
         }
-        let evaled_args = arg.iter().map(|e| self.evaluate(&e, env)).collect::<Result<Vec<ast::NylispExpression>, ast::NylispError>>()?;
+        let evaled_args = arg.iter().map(|e| self.evaluate(e, env)).collect::<Result<Vec<ast::NylispExpression>, ast::NylispError>>()?;
         let mut data: std::collections::HashMap<String, ast::NylispExpression> = std::collections::HashMap::new();
         for (k, v) in param_strings.iter().zip(evaled_args.iter()) {
             data.insert(k.clone(), v.clone());
         }
         Ok(ast::Environment {
             _virtual: Some(env),
-            data: data,
+            data,
         })
     }
 
@@ -217,15 +217,15 @@ impl Evaluator {
                         _ => return Err(ast::NylispError::Because(format!("expected symbol, but got {:?}", list)))
                     }
                 }
-                return Ok(strings);
+                Ok(strings)
             }
-            _ => return Err(ast::NylispError::Because(format!("expected list, but got {:?}", list)))
+            _ => Err(ast::NylispError::Because(format!("expected list, but got {:?}", list)))
         }
     }
 
     fn str_from_symbol(&self, symbol: ast::NylispExpression) -> Result<String, ast::NylispError> {
         match symbol {
-            ast::NylispExpression::Symbol(s) => Ok(s.clone()),
+            ast::NylispExpression::Symbol(s) => Ok(s),
             _ => return Err(ast::NylispError::Because(format!("expected symbol, but got {:?}", symbol)))
         }
     }
