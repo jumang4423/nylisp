@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1e7c54a-e72d-4ff3-9eea-00bb0ba9bfc5" name="Changes" comment="" />
+    <list default="true" id="e1e7c54a-e72d-4ff3-9eea-00bb0ba9bfc5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/command_line_int/src/builtin/builtin.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/command_line_int/src/builtin/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_line_int/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/command_line_int/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_line_int/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/command_line_int/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_line_int/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/command_line_int/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nylisp_eval/src/environment/environment.rs" beforeDir="false" afterPath="$PROJECT_DIR$/nylisp_eval/src/environment/environment.rs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +71,8 @@
       <workItem from="1646881045518" duration="1395000" />
       <workItem from="1646888867598" duration="33000" />
       <workItem from="1646902233553" duration="380000" />
+      <workItem from="1647270643171" duration="11000" />
+      <workItem from="1649660099014" duration="605000" />
     </task>
     <servers />
   </component>

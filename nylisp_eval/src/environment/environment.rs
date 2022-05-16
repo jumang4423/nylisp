@@ -1,10 +1,10 @@
-use std::collections::HashMap;
-use std::rc::Rc;
-use std::cell::RefCell;
-use std::env::args;
 use crate::ast;
 use crate::evaluation;
 use rand::Rng;
+use std::cell::RefCell;
+use std::collections::HashMap;
+use std::env::args;
+use std::rc::Rc;
 
 pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     let mut data: HashMap<String, ast::ast::NylispExpression> = HashMap::new();
@@ -217,37 +217,43 @@ pub fn builtin_env<'a>() -> ast::ast::Environment<'a> {
     }
 }
 
-fn parse_list_of_floats(args: &[ast::ast::NylispExpression]) -> Result<Vec<f64>, ast::ast::NylispError> {
-    args
-        .iter()
-        .map(|x| parse_single_float(x))
-        .collect()
+fn parse_list_of_floats(
+    args: &[ast::ast::NylispExpression],
+) -> Result<Vec<f64>, ast::ast::NylispError> {
+    args.iter().map(|x| parse_single_float(x)).collect()
 }
 
 fn parse_single_float(exp: &ast::ast::NylispExpression) -> Result<f64, ast::ast::NylispError> {
     match exp {
         ast::ast::NylispExpression::Number(num) => Ok(*num),
-        _ => Err(ast::ast::NylispError::Because("expected a number".to_string())),
+        _ => Err(ast::ast::NylispError::Because(
+            "expected a number".to_string(),
+        )),
     }
 }
 
-fn parse_list_of_bools(args: &[ast::ast::NylispExpression]) -> Result<Vec<bool>, ast::ast::NylispError> {
-    args
-        .iter()
-        .map(|x| parse_single_bool(x))
-        .collect()
+fn parse_list_of_bools(
+    args: &[ast::ast::NylispExpression],
+) -> Result<Vec<bool>, ast::ast::NylispError> {
+    args.iter().map(|x| parse_single_bool(x)).collect()
 }
 
 fn parse_single_bool(exp: &ast::ast::NylispExpression) -> Result<bool, ast::ast::NylispError> {
     match exp {
         ast::ast::NylispExpression::Boolean(b) => Ok(*b),
-        _ => Err(ast::ast::NylispError::Because("expected a boolean".to_string())),
+        _ => Err(ast::ast::NylispError::Because(
+            "expected a boolean".to_string(),
+        )),
     }
 }
 
-fn parse_single_list(exp: &ast::ast::NylispExpression) -> Result<Vec<ast::ast::NylispExpression>, ast::ast::NylispError> {
+fn parse_single_list(
+    exp: &ast::ast::NylispExpression,
+) -> Result<Vec<ast::ast::NylispExpression>, ast::ast::NylispError> {
     match exp {
         ast::ast::NylispExpression::List(list) => Ok(list.clone()),
-        _ => Err(ast::ast::NylispError::Because("expected a list".to_string())),
+        _ => Err(ast::ast::NylispError::Because(
+            "expected a list".to_string(),
+        )),
     }
 }

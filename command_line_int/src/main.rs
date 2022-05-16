@@ -1,3 +1,5 @@
+mod builtin;
+
 pub use nylisp_eval;
 
 fn read_line() -> String {
@@ -13,7 +15,7 @@ fn main() {
     loop {
         println!("*");
         let tokens = nylisp_eval::tokenize_nylisp(read_line());
-        if tokens.len() == 0 {
+        if tokens.is_empty() {
             continue;
         }
         let ast = nylisp_eval::parse_nylisps(tokens);
