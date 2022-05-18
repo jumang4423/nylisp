@@ -11,7 +11,7 @@ fn read_line() -> String {
 fn main() {
     let mut global_env = nylisp_eval::environment::environment::builtin_env();
     println!("-o welcome to nylisp repl");
-    println!("-! ctrl+d to exit");
+    println!("-! ctrl+c to exit");
     loop {
         println!("*");
         let tokens = nylisp_eval::tokenize_nylisp(read_line());
