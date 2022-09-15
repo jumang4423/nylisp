@@ -98,7 +98,7 @@ mod tests {
         let input = "💖💔";
         let expected = ast::ast::NylispExpression::List(vec![]);
 
-        let mut tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
+        let tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
         let tokens = tokenizer_obj.tokenize();
         let parser = Parser::new();
         let (result, _) = parser.parse_program(tokens).unwrap();
@@ -114,7 +114,7 @@ mod tests {
             ]),
         ]);
 
-        let mut tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
+        let tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
         let tokens = tokenizer_obj.tokenize();
         let parser = Parser::new();
         let (result, _) = parser.parse_program(tokens).unwrap();
@@ -130,7 +130,7 @@ mod tests {
             ast::ast::NylispExpression::Number(2.0),
         ]);
 
-        let mut tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
+        let tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
         let tokens = tokenizer_obj.tokenize();
         let parser = Parser::new();
         let (result, _) = parser.parse_program(tokens).unwrap();
@@ -150,7 +150,7 @@ mod tests {
             ]),
         ]);
 
-        let mut tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
+        let tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
         let tokens = tokenizer_obj.tokenize();
         let parser = Parser::new();
         let (result, _) = parser.parse_program(tokens).unwrap();
@@ -169,7 +169,7 @@ mod tests {
             ]))),
         ]);
 
-        let mut tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
+        let tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
         let tokens = tokenizer_obj.tokenize();
         let parser = Parser::new();
         let (result, _) = parser.parse_program(tokens).unwrap();
@@ -183,7 +183,7 @@ mod tests {
             ast::ast::NylispExpression::List(vec![]),
             ast::ast::NylispExpression::List(vec![]),
         ]);
-        let mut tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
+        let tokenizer_obj = tokenizer::tokenizer::Tokenizer::new(input.to_string());
         let tokens = tokenizer_obj.tokenize();
         let parser = Parser::new();
         let res = parser.parse_programs(tokens);
